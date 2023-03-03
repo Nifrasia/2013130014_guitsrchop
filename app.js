@@ -15,14 +15,14 @@ const errorHandler = require('./middleware/errorHandler')
 
 var app = express();
 
+mongoose.set("strictQuery", false);
+mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
+  console.log("Connected to MongoDB");
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-
-mongoose.set("strictQuery", false);
-mongoose.connect(config.MONGODB_URI, () => {
-  console.log("Connected to MongoDB");
-});
 
 // mongoose.connect(config.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true});
 
